@@ -1,0 +1,8 @@
+{
+  "name": "nonfig/php-sdk",
+  "description": "PHP SDK for Nonfig RESTful APIs",
+  "require": {
+      "php": "^7.1",
+      "nategood/httpful": "*"
+  }
+}
