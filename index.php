@@ -67,12 +67,4 @@ class Nonfig {
     }
 }
 
-// pls remove this below
-// $nonfig = new Nonfig("f1afd7c6-c570-4fc0-a08a-5ed65bf9811e", "cT99KHl4kT17ewFotCef");
-// $configId = $nonfig->findConfigurationById("8400a3a0-9c14-47cc-b598-f5037fd5a9ce");
-// $configName = $nonfig->findConfigurationByName("/feature_flags");
-// $configPath = $nonfig->findConfigurationByPath("i18n");
-
-// print_r($configPath);
-
 ?>
