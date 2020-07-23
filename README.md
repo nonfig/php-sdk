@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/nonfig/php-sdk/tree/master.svg?style=shield)](https://circleci.com/gh/nonfig/php-sdk/tree/master)
+
 # php-sdk
 
 PHP SDK for Nonfig | Manage your configurations NOW!
