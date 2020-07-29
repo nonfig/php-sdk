@@ -1,6 +1,7 @@
 <?php
 
 require 'vendor/autoload.php';
+require 'NConfiguration.php';
 
 class Nonfig {
     function __construct($appId, $appSecret) {
@@ -17,13 +18,13 @@ class Nonfig {
 
         $configurations = $response->body->data;
 
-        if (count($configurations) > 0) {
-            return $configurations[0];
+        if (count($configurations) == 0) {
+            throw new Exception(
+                "Unable to find a Configuration with id(" . $id . ")"
+            );
         }
 
-        throw new Exception(
-            "Unable to find a Configuration with id(" . $id . ")"
-        );
+        return $this->toNonfigConfigResponse($configurations, true);
     }
 
     function findConfigurationByName($name) {
@@ -32,13 +33,13 @@ class Nonfig {
         $this->handleError($response);
         $configurations = $response->body->data;
 
-        if (count($configurations) > 0) {
-            return $configurations[0];
+        if (count($configurations) == 0) {
+            throw new Exception(
+                "Unable to find a Configuration with name(" . $name . ")"
+            );
         }
 
-        throw new Exception(
-            "Unable to find a Configuration with name(" . $name . ")"
-        );
+        return $this->toNonfigConfigResponse($configurations, true);
     }
 
     function findConfigurationByPath($path) {
@@ -46,7 +47,7 @@ class Nonfig {
 
         $this->handleError($response);
 
-        return $response->body->data;
+        return $this->toNonfigConfigResponse($response->body->data, false);
     }
 
     function executeRequest($path) {
@@ -58,10 +59,28 @@ class Nonfig {
             ->send();
     }
 
+    function toNonfigConfigResponse($data, $single = true) {
+        if ($single == true) {
+            $configuration = new NConfiguration();
+            $configuration->load($data[0]);
+
+            return $configuration;
+        }
+
+        $arr = array();
+
+        foreach ($data as $row) {
+            $configuration = new NConfiguration();
+            $configuration->load($row);
+
+            $arr[] = $configuration;
+        }
+
+        return $arr;
+    }
+
     function handleError($response) {
         if ($response->body->statusCode >= 400) {
-            print_r($response);
-
             throw new Exception("Failed to fetch configuration");
         }
     }
