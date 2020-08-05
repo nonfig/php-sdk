@@ -2,24 +2,26 @@
 
 require 'vendor/autoload.php';
 require 'NConfiguration.php';
-
+/**
+ * @class Nonfig Base API Wrapper
+ */
 class Nonfig {
     /**
-     * @var string
+     * @var string Application ID of a Consumer
      */
-    private $appId;
+    public $appId;
     /**
-     * @var string
+     * @var string Application Secret of a Consumer
      */
-    private $appSecret;
+    public $appSecret;
     /**
-     * @var string
+     * @var string Defaults to RESTful APIs URL
      */
-    private $baseUrl;
+    public $baseUrl;
     /**
-     * @var string
+     * @var string URI base path for configuration
      */
-    private $apiUrl;
+    public $apiUrl;
 
     function __construct($appId, $appSecret) {
         $this->appId = $appId;
