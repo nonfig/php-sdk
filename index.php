@@ -4,6 +4,23 @@ require 'vendor/autoload.php';
 require 'NConfiguration.php';
 
 class Nonfig {
+    /**
+     * @var string
+     */
+    private $appId;
+    /**
+     * @var string
+     */
+    private $appSecret;
+    /**
+     * @var string
+     */
+    private $baseUrl;
+    /**
+     * @var string
+     */
+    private $apiUrl;
+
     function __construct($appId, $appSecret) {
         $this->appId = $appId;
         $this->appSecret = $appSecret;
@@ -44,6 +61,15 @@ class Nonfig {
 
     function findConfigurationByPath($path) {
         $response = $this->executeRequest("configurations/path/" . $path);
+
+        $this->handleError($response);
+
+        return $this->toNonfigConfigResponse($response->body->data, false);
+    }
+
+    function findConfigurationByLabels($labels) {
+        $labelString = join(",", $labels);
+        $response = $this->executeRequest("configurations/labels/" . $labelString);
 
         $this->handleError($response);
 
