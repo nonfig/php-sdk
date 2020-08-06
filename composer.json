@@ -1,6 +1,7 @@
 {
     "name": "nonfig/php-sdk",
     "type": "library",
+    "version": "0.0.5",
     "description": "PHP SDK for Nonfig RESTful APIs",
     "require": {
         "php": "^7.1",
