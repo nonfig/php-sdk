@@ -70,8 +70,7 @@ class Nonfig {
     }
 
     function findConfigurationByLabels($labels) {
-        $labelString = join(",", $labels);
-        $response = $this->executeRequest("configurations/labels/" . $labelString);
+        $response = $this->executeRequest("configurations/labels/" . $labels);
 
         $this->handleError($response);
 
