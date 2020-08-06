@@ -108,7 +108,7 @@ class Nonfig {
     }
 
     function handleError($response) {
-        if ($response->body->statusCode >= 400) {
+        if ($response->code >= 400) {
             throw new Exception("Failed to fetch configuration");
         }
     }
